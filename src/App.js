@@ -6,9 +6,51 @@ import './App.css';
 import jsPDF from 'jspdf';
 import { print} from './ HTMLtoPDF_Simple'
 
+function demoFromHTML() {
+  var pdf = new jsPDF('p', 'pt', 'a4');
+  pdf.internal.scaleFactor = 1;
+  var options = {
+    pagesplit: true,
+    "background": '#ffffff' 
+ };
+  pdf.addHTML(document.getElementById('root'), options,function() {
+    pdf.save('web.pdf');
+  });
+}
+
+function App() {
+  const demoSample = "<div class='App'><header class='App-header'><img src='/static/media/logo.5d5d9eef.svg' class='App-logo' alt='logo'><p>Edit <code>src/App.js</code> and save to reload.</p><a class='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>Learn React</a><button>Run Code</button></header></div>";
+  let planSample = "<div><h1 dir = 'auto'>1. SITUATION</h1><p dir = 'auto'>Briefly give the general picture so that subordinate commanders will understand the current situation under the following headings</p><h2 dir = 'auto'>a) Enemy Forces:</h2><p dir = 'auto'>Composition, estimated strengths, identification, disposition, current location, movement anticipated, capabilities, and assessment of intentions.  References may be made to other record documents that amplify information included here.</p><h2 dir = 'auto'>b) Friendly Forces:</h2><p dir = 'auto'>Information concerning friendly forces other than those covered by the Operation Order which should directly affect the action of subordinate commanders.  These forces include those not attached or organic to the command of the contemplated operation, but whose presence on a flank or other adjacent area is of interest.  Include information on such forces that subordinate commanders need to know in order to accomplish their tasks.  This includes the mission of the higher unit, and should include the higher commander's intent and/or concept of the operation, one level up.</p><h2 dir = 'auto'>c) Attachments and Detachments:</h2><p dir = 'auto'>Units attached to or detached from the issuing formation/unit, together with the times they are effective may be listed here, in an annex, or both.</p><h2 dir = 'auto'>d) Commander's Evaluation:</h2><p dir = 'auto'>This is an optional subparagraph to be used when directed.  It gives briefly the commander's evaluation of the situation.</p><h1 dir = 'auto'>2. MISSION</h1><p dir = 'auto'>A clear, concise statement of the task(s) to be accomplished by the commander and its purpose.  This paragraph must not be sub-paragraphed.</p><h1 dir = 'auto'>3. EXECUTION</h1><p dir = 'auto'>This paragraph will be laid out to suit the requirements of the particular operation.  Summarize the overall course of action intended, or concept of operations.  In subsequent paragraphs, assign specific tasks to each element of the task organization charged with the execution of operations required to accomplish the concept of operations or in support of those operations, and give details of coordination and task organization not already given in the task organization section.  Instructions applicable to two or more elements of the task organization can be set forth in a final paragraph of this section headed coordinating instructions.�</p><h2 dir = 'auto'>a) Concept of Operations:</h2><p dir = 'auto'>Describe, in brief, how the commander visualizes the execution of the operation from start to completion.  The Commander's Intent is a concise expression of the purpose of the operation which describes the desired end state.  It should be understood two echelons down and helps his subordinates  focus  on  what  has  to  be  accomplished  in  order  to  achieve success so that mission accomplishment is possible in the time available and  in  the  absence  of  additional  communications  or  further  instructions.    This paragraph should set forth the phases of the operation (if phased); schemes of  manoeuvre  for  major  subordinate  task  elements  that  describe  precisely what the commander expects to be done; general plans for the employment of supporting fires and weapons, including nuclear weapons; and the general plan for the landing force in amphibious operations.</p><h2 dir = 'auto'>b) Tasks/Missions to Manoeuvre Units:</h2><p dir = 'auto'>Subsequent subparagraphs assign specific tasks to each element of the command charged with the execution of tactical duties, and give details of coordination and the task organization/groupings if not included under 'Task Organization' or in an annex.</p><h2 dir = 'auto'>c) Tasks/Missions to Combat Support Units:</h2><p dir = 'auto'>Use these subparagraphs only as necessary.  List CS units in subparagraphs in the same order as they appear in the task organization.  Use CS subparagraphs to list only those specific tasks that CS units much accomplish and that are not specified or implied elsewhere, if information is adequately covered in OPORD do not write an annex.</p><h2 dir = 'auto'>d) Coordinating Instructions:</h2><p dir = 'auto'>Instructions applicable to two or more elements of the task organization.  Typically, such instructions might include boundaries, objective, beaches, lines of departure, time and direction of attack, and other specifics needed to coordinate the activities of different subordinate elements.  Other information is also included, such as reporting instructions, anticipated time of execution, and when the order becomes effective for planning and/or execution.</p><h1 dir = 'auto'>4. ADMINISTRATIVE/LOGISTICS</h1><p dir = 'auto'>State administrative and logistics arrangements applicable to the operation.  Describe the manner of logistics support for the contemplated operation.  At higher command levels this paragraph could state 'See Administrative/Logistics Order'.  At lower command levels this paragraph, or the Administrative/Logistics Annex, may eliminate the need for an Administrative/Logistics Order.</p><h2 dir = 'auto'>a) Support Concept:</h2><p dir = 'auto'>Include enough information to make clear the basic concept for logistics support.  Summarize the overall operation from the Combat Support and Combat Service Support perspectives.</p><h2 dir = 'auto'>b) Materiel and Services:</h2><p dir = 'auto'>List materiel and services for supply, maintenance, transportation, and construction, and allocation of labor for logistics purposes.</p><h2 dir = 'auto'>c) Medical Evacuation and Hospitalization:</h2><p dir = 'auto'>List plans and policies for hospitalization and evacuation of military and civilian personnel.</p><h2 dir = 'auto'>d) Personnel:</h2><p dir = 'auto'>List unit strengths, replacements, and personnel policies and procedures, including those pertaining to civilians and enemy prisoners of war.</p><h2 dir = 'auto'>e) Civil-Military Cooperation:</h2><p dir = 'auto'>Describe control of civil population, refugees, and other relevant civil affairs matters.</p><h1 dir = 'auto'>5. COMMAND AND SIGNAL</h1><p dir = 'auto'>Include signal, recognition, and identification instructions; electronic policy; headquarters locations and movement; spectrum control nd high ground coordination; code words; code names; and liaison.</p><h2 dir = 'auto'>a) Command, Control, and Communications:</h2><p dir = 'auto'>Give information about pertinent command, control, and communications nets; operating procedures; recognition and identification procedures; electronic emission constraints, etc.  A separate annex may be required, or reference to an existing plan may be made.</p><h2 dir = 'auto'>b) Command:</h2><p dir = 'auto'>Multinational operations can have complex command relationships.  Op Os must be specific concerning these arrangements, including shifts that may take place as the operation progresses from one phase to the next.  Clearly state all command relationships.  Include current and planned command post locations, and alternate command posts with their times of activation and deactivation.</p></div>";
+
+  let parser = new DOMParser();
+  planSample = parser.parseFromString(planSample,'text/xml');
+  console.log(planSample);
+  console.log(document.getElementById('root'))
+  // var doc = new DOMParser().parseFromString(planSample, "text/xml");
+  // console.log(doc);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+        <button onClick={()=>{print(1,planSample  )}}>Run Code</button>
+      </header>
+    </div>
+  );
+}
+
 {/* <script src="./lib/jspdf/jspdf.debug.js"></script>
 <script src="./lib/html2canvas/html2canvas.js"></script> */}
-
 
 // THIS IS EQUIVALENT of     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.min.js"></script>
 
@@ -3772,48 +3814,5 @@ import { print} from './ HTMLtoPDF_Simple'
 //   }
 
 // }).call({}, typeof(window) !== "undefined" ? window : undefined, typeof(document) !== "undefined" ? document : undefined);
-
-function demoFromHTML() {
-  var pdf = new jsPDF('p', 'pt', 'a4');
-  pdf.internal.scaleFactor = 1;
-  var options = {
-    pagesplit: true,
-    "background": '#ffffff' 
- };
-  pdf.addHTML(document.getElementById('root'), options,function() {
-    pdf.save('web.pdf');
-  });
-}
-
-function App() {
-  const demoSample = "<div class='App'><header class='App-header'><img src='/static/media/logo.5d5d9eef.svg' class='App-logo' alt='logo'><p>Edit <code>src/App.js</code> and save to reload.</p><a class='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>Learn React</a><button>Run Code</button></header></div>";
-  let planSample = "<div><h1 dir = 'auto'>1. SITUATION</h1><p dir = 'auto'>Briefly give the general picture so that subordinate commanders will understand the current situation under the following headings</p><h2 dir = 'auto'>a) Enemy Forces:</h2><p dir = 'auto'>Composition, estimated strengths, identification, disposition, current location, movement anticipated, capabilities, and assessment of intentions.  References may be made to other record documents that amplify information included here.</p><h2 dir = 'auto'>b) Friendly Forces:</h2><p dir = 'auto'>Information concerning friendly forces other than those covered by the Operation Order which should directly affect the action of subordinate commanders.  These forces include those not attached or organic to the command of the contemplated operation, but whose presence on a flank or other adjacent area is of interest.  Include information on such forces that subordinate commanders need to know in order to accomplish their tasks.  This includes the mission of the higher unit, and should include the higher commander's intent and/or concept of the operation, one level up.</p><h2 dir = 'auto'>c) Attachments and Detachments:</h2><p dir = 'auto'>Units attached to or detached from the issuing formation/unit, together with the times they are effective may be listed here, in an annex, or both.</p><h2 dir = 'auto'>d) Commander's Evaluation:</h2><p dir = 'auto'>This is an optional subparagraph to be used when directed.  It gives briefly the commander's evaluation of the situation.</p><h1 dir = 'auto'>2. MISSION</h1><p dir = 'auto'>A clear, concise statement of the task(s) to be accomplished by the commander and its purpose.  This paragraph must not be sub-paragraphed.</p><h1 dir = 'auto'>3. EXECUTION</h1><p dir = 'auto'>This paragraph will be laid out to suit the requirements of the particular operation.  Summarize the overall course of action intended, or concept of operations.  In subsequent paragraphs, assign specific tasks to each element of the task organization charged with the execution of operations required to accomplish the concept of operations or in support of those operations, and give details of coordination and task organization not already given in the task organization section.  Instructions applicable to two or more elements of the task organization can be set forth in a final paragraph of this section headed coordinating instructions.�</p><h2 dir = 'auto'>a) Concept of Operations:</h2><p dir = 'auto'>Describe, in brief, how the commander visualizes the execution of the operation from start to completion.  The Commander's Intent is a concise expression of the purpose of the operation which describes the desired end state.  It should be understood two echelons down and helps his subordinates  focus  on  what  has  to  be  accomplished  in  order  to  achieve success so that mission accomplishment is possible in the time available and  in  the  absence  of  additional  communications  or  further  instructions.    This paragraph should set forth the phases of the operation (if phased); schemes of  manoeuvre  for  major  subordinate  task  elements  that  describe  precisely what the commander expects to be done; general plans for the employment of supporting fires and weapons, including nuclear weapons; and the general plan for the landing force in amphibious operations.</p><h2 dir = 'auto'>b) Tasks/Missions to Manoeuvre Units:</h2><p dir = 'auto'>Subsequent subparagraphs assign specific tasks to each element of the command charged with the execution of tactical duties, and give details of coordination and the task organization/groupings if not included under 'Task Organization' or in an annex.</p><h2 dir = 'auto'>c) Tasks/Missions to Combat Support Units:</h2><p dir = 'auto'>Use these subparagraphs only as necessary.  List CS units in subparagraphs in the same order as they appear in the task organization.  Use CS subparagraphs to list only those specific tasks that CS units much accomplish and that are not specified or implied elsewhere, if information is adequately covered in OPORD do not write an annex.</p><h2 dir = 'auto'>d) Coordinating Instructions:</h2><p dir = 'auto'>Instructions applicable to two or more elements of the task organization.  Typically, such instructions might include boundaries, objective, beaches, lines of departure, time and direction of attack, and other specifics needed to coordinate the activities of different subordinate elements.  Other information is also included, such as reporting instructions, anticipated time of execution, and when the order becomes effective for planning and/or execution.</p><h1 dir = 'auto'>4. ADMINISTRATIVE/LOGISTICS</h1><p dir = 'auto'>State administrative and logistics arrangements applicable to the operation.  Describe the manner of logistics support for the contemplated operation.  At higher command levels this paragraph could state 'See Administrative/Logistics Order'.  At lower command levels this paragraph, or the Administrative/Logistics Annex, may eliminate the need for an Administrative/Logistics Order.</p><h2 dir = 'auto'>a) Support Concept:</h2><p dir = 'auto'>Include enough information to make clear the basic concept for logistics support.  Summarize the overall operation from the Combat Support and Combat Service Support perspectives.</p><h2 dir = 'auto'>b) Materiel and Services:</h2><p dir = 'auto'>List materiel and services for supply, maintenance, transportation, and construction, and allocation of labor for logistics purposes.</p><h2 dir = 'auto'>c) Medical Evacuation and Hospitalization:</h2><p dir = 'auto'>List plans and policies for hospitalization and evacuation of military and civilian personnel.</p><h2 dir = 'auto'>d) Personnel:</h2><p dir = 'auto'>List unit strengths, replacements, and personnel policies and procedures, including those pertaining to civilians and enemy prisoners of war.</p><h2 dir = 'auto'>e) Civil-Military Cooperation:</h2><p dir = 'auto'>Describe control of civil population, refugees, and other relevant civil affairs matters.</p><h1 dir = 'auto'>5. COMMAND AND SIGNAL</h1><p dir = 'auto'>Include signal, recognition, and identification instructions; electronic policy; headquarters locations and movement; spectrum control nd high ground coordination; code words; code names; and liaison.</p><h2 dir = 'auto'>a) Command, Control, and Communications:</h2><p dir = 'auto'>Give information about pertinent command, control, and communications nets; operating procedures; recognition and identification procedures; electronic emission constraints, etc.  A separate annex may be required, or reference to an existing plan may be made.</p><h2 dir = 'auto'>b) Command:</h2><p dir = 'auto'>Multinational operations can have complex command relationships.  Op Os must be specific concerning these arrangements, including shifts that may take place as the operation progresses from one phase to the next.  Clearly state all command relationships.  Include current and planned command post locations, and alternate command posts with their times of activation and deactivation.</p></div>";
-
-  let parser = new DOMParser();
-  planSample = parser.parseFromString(planSample,'text/xml');
-  console.log(planSample);
-  console.log(document.getElementById('root'))
-  // var doc = new DOMParser().parseFromString(planSample, "text/xml");
-  // console.log(doc);
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <button onClick={()=>{print(1,planSample  )}}>Run Code</button>
-      </header>
-    </div>
-  );
-}
 
 export default App;
